@@ -1,4 +1,4 @@
-//get player selection
+//get and parse player selection
 function getPlayerChoice() {
     let choice = prompt("Rock, Paper, or Scissors?");
     choice = choice[0].toUpperCase() + choice.slice(1).toLowerCase()
@@ -13,7 +13,6 @@ function getComputerChoice() {
 }
 
 // plays a round of rock paper scissors
-// make players selection case insensitive. They can input any variation of those words.
 // returns a string that declares the winner
 function getRoundWinner(playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
@@ -36,9 +35,6 @@ function getRoundWinner(playerSelection, computerSelection) {
 }
 
 //plays 5 rounds, keeps score, and reports the winner or loser at the end.
-
-//loop 5 rounds, for each round won the player or computer adds 1 to their score.
-//after 5 rounds, report the winner
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -46,9 +42,9 @@ function game() {
         let message = getRoundWinner();
         console.log(message)
         if (message.includes('Win')) {
-            playerScore++
+            playerScore++;
         } else if (message.includes('Lose')) {
-            computerScore++
+            computerScore++;
         }
     }
     console.log(`Score is ${playerScore} to ${computerScore}`)
