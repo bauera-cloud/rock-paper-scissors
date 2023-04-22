@@ -5,7 +5,7 @@ function getPlayerChoice() {
     return choice
 }
 
-// select rock paper or scissors randomly
+// select rock paper or scissors randomly for computer
 function getComputerChoice() {
     let choices = ['Rock', 'Paper', 'Scissors'];
     let random = Math.floor(Math.random() * choices.length + 1)
@@ -18,7 +18,6 @@ function getComputerChoice() {
 function getRoundWinner(playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoice();
-    console.log(computerSelection, playerSelection)
     if (computerSelection === playerSelection) {
         return "Tie!"
     } else if (computerSelection === 'Rock' && playerSelection === "Paper") {
@@ -37,7 +36,21 @@ function getRoundWinner(playerSelection, computerSelection) {
 }
 
 //plays 5 rounds, keeps score, and reports the winner or loser at the end.
+
+//loop 5 rounds, for each round won the player or computer adds 1 to their score.
+//after 5 rounds, report the winner
 function game() {
     let playerScore = 0;
     let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let message = getRoundWinner();
+        console.log(message)
+        if (message.includes('Win')) {
+            playerScore++
+        } else if (message.includes('Lose')) {
+            computerScore++
+        }
+    }
+    console.log(`Score is ${playerScore} to ${computerScore}`)
+    return playerScore > computerScore ? 'Player wins!' : playerScore < computerScore ? 'Computer wins!' : 'TIE!'
 }
