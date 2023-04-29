@@ -1,9 +1,13 @@
-//get and parse player selection
-function getPlayerChoice() {
-    let choice = prompt("Rock, Paper, or Scissors?");
-    choice = choice[0].toUpperCase() + choice.slice(1).toLowerCase()
-    return choice
-}
+let buttons = document.querySelectorAll("button");
+
+//player choice
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        let choice = e.target.innerText;
+        console.log(choice)
+        return choice
+    })
+})
 
 // select rock paper or scissors randomly for computer
 function getComputerChoice() {
@@ -14,7 +18,7 @@ function getComputerChoice() {
 
 // plays a round of rock paper scissors
 // returns a string that declares the winner
-function getRoundWinner(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoice();
     if (computerSelection === playerSelection) {
@@ -35,18 +39,22 @@ function getRoundWinner(playerSelection, computerSelection) {
 }
 
 //plays 5 rounds, keeps score, and reports the winner or loser at the end.
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        let message = getRoundWinner();
-        console.log(message)
-        if (message.includes('Win')) {
-            playerScore++;
-        } else if (message.includes('Lose')) {
-            computerScore++;
-        }
-    }
-    console.log(`Score is ${playerScore} to ${computerScore}`)
-    return playerScore > computerScore ? 'Player wins!' : playerScore < computerScore ? 'Computer wins!' : 'TIE!'
-}
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     for (let i = 0; i < 5; i++) {
+//         let message = playRound();
+//         console.log(message)
+//         if (message.includes('Win')) {
+//             playerScore++;
+//         } else if (message.includes('Lose')) {
+//             computerScore++;
+//         }
+//     }
+//     console.log(`Score is ${playerScore} to ${computerScore}`)
+//     return playerScore > computerScore ? 'Player wins!' : playerScore < computerScore ? 'Computer wins!' : 'TIE!'
+// }
+
+
+
+

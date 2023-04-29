@@ -1,0 +1,11 @@
+button {
+    width: 200px;
+    height: 200px;
+    font-size: 2rem;
+}
+
+body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
