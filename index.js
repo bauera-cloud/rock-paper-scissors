@@ -1,12 +1,21 @@
 let buttons = document.querySelectorAll("button");
+let body = document.querySelector("body");
+
+let score = document.createElement("div");
+
+
+let results = document.createElement("div");
+results.classList.add("result");
+body.appendChild(results);
+
+function getPlayerChoice(e) {
+    choice = e.target.innerText;
+    results.innerText = playRound(choice, getComputerChoice())
+}
 
 //player choice
 buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        let choice = e.target.innerText;
-        console.log(choice)
-        return choice
-    })
+    button.addEventListener('click', getPlayerChoice)
 })
 
 // select rock paper or scissors randomly for computer
@@ -19,8 +28,6 @@ function getComputerChoice() {
 // plays a round of rock paper scissors
 // returns a string that declares the winner
 function playRound(playerSelection, computerSelection) {
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
     if (computerSelection === playerSelection) {
         return "Tie!"
     } else if (computerSelection === 'Rock' && playerSelection === "Paper") {
@@ -58,3 +65,15 @@ function playRound(playerSelection, computerSelection) {
 
 
 
+/* 
+get player choice when a button is clicked
+get the computer choice
+check to see who won with palyRound() 
+
+when a user clicks a button it records their selection as a string
+the computer generates a random choice
+the choices are compared
+the display is set
+
+All of this happen when the user clicks a button.
+*/

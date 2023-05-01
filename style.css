@@ -4,8 +4,26 @@ button {
     font-size: 2rem;
 }
 
-body {
+.scoreBoard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.names,
+.scores {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.result {
+    text-align: center;
+    padding: 20px
 }
