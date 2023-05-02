@@ -13,18 +13,20 @@ let results = document.createElement("div");
 results.classList.add("result");
 body.appendChild(results);
 
-function getPlayerChoice(e) {
-    choice = e.target.innerText;
-    results.innerText = playRound(choice, getComputerChoice());
-    if (results.innerText.includes('Win')) { playerScore.innerText++ }
-    if (results.innerText.includes('Lose')) { computerScore.innerText++ }
-}
 
-
+/* 
+while the game hasn't reached the score of 5 continue loop
+if the game is over exit/break from the loop
+*/
 
 //player choice
 buttons.forEach((button) => {
-    button.addEventListener('click', getPlayerChoice)
+    button.addEventListener('click', (e) => {
+        playerChoice = e.target.innerText;
+        results.innerText = playRound(playerChoice, getComputerChoice());
+        if (results.innerText.includes('Win')) { playerScore.innerText++ }
+        if (results.innerText.includes('Lose')) { computerScore.innerText++ }
+    })
 })
 
 // select rock paper or scissors randomly for computer
@@ -76,17 +78,10 @@ function playRound(playerSelection, computerSelection) {
 
 /* 
 Problems:
-1. Display for scoreboard isn't how I'd like it
-both names and scores should be using space-between
+1. Score value should be capped at 5.
+2. It needs to display the winner once someone has reach 5.
 
-2. Logic for changing the score could be reduced
+3. The naming conventions confuse me
 
-Understand the problem: 2.
-There should be an initial value of 0
-
-if the player won, the value should go up and text should
-display the value. Vise versa for computer.
-
-
-
+4. Reduce playerScore.innerText to playerScore
 */

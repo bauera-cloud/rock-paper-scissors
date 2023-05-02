@@ -5,16 +5,11 @@ button {
 }
 
 .scoreBoard {
+    padding: 20px 0;
+    text-align: center;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-.names,
-.scores {
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 100px;
 }
 
 .buttons {
