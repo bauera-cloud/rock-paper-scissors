@@ -1,8 +1,13 @@
 let buttons = document.querySelectorAll("button");
 let body = document.querySelector("body");
 
-let score = document.createElement("div");
+let playerScore = document.querySelector(".playerScore");
+let computerScore = document.querySelector(".computerScore");
+playerScore.innerText = 0;
+computerScore.innerText = 0;
 
+let score = document.createElement("div");
+let isGameOver = false;
 
 let results = document.createElement("div");
 results.classList.add("result");
@@ -10,8 +15,12 @@ body.appendChild(results);
 
 function getPlayerChoice(e) {
     choice = e.target.innerText;
-    results.innerText = playRound(choice, getComputerChoice())
+    results.innerText = playRound(choice, getComputerChoice());
+    if (results.innerText.includes('Win')) { playerScore.innerText++ }
+    if (results.innerText.includes('Lose')) { computerScore.innerText++ }
 }
+
+
 
 //player choice
 buttons.forEach((button) => {
@@ -66,14 +75,18 @@ function playRound(playerSelection, computerSelection) {
 
 
 /* 
-get player choice when a button is clicked
-get the computer choice
-check to see who won with palyRound() 
+Problems:
+1. Display for scoreboard isn't how I'd like it
+both names and scores should be using space-between
 
-when a user clicks a button it records their selection as a string
-the computer generates a random choice
-the choices are compared
-the display is set
+2. Logic for changing the score could be reduced
 
-All of this happen when the user clicks a button.
+Understand the problem: 2.
+There should be an initial value of 0
+
+if the player won, the value should go up and text should
+display the value. Vise versa for computer.
+
+
+
 */
