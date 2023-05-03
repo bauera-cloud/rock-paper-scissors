@@ -1,10 +1,9 @@
 let buttons = document.querySelectorAll("button");
 let body = document.querySelector("body");
+let player = document.querySelector(".player");
 
 let playerScore = document.querySelector(".playerScore");
 let computerScore = document.querySelector(".computerScore");
-playerScore.innerText = 0;
-computerScore.innerText = 0;
 
 let score = document.createElement("div");
 let isGameOver = false;
@@ -13,19 +12,28 @@ let results = document.createElement("div");
 results.classList.add("result");
 body.appendChild(results);
 
+playerScore.innerText = 0;
+computerScore.innerText = 0;
+console.log(typeof parseInt(playerScore.innerText))
+console.log(typeof playerScore.innerText)
+console.log(typeof playerScore)
 
-/* 
-while the game hasn't reached the score of 5 continue loop
-if the game is over exit/break from the loop
-*/
 
 //player choice
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         playerChoice = e.target.innerText;
         results.innerText = playRound(playerChoice, getComputerChoice());
-        if (results.innerText.includes('Win')) { playerScore.innerText++ }
-        if (results.innerText.includes('Lose')) { computerScore.innerText++ }
+        if (parseInt(playerScore.innerText) >= 5) {
+            buttons.forEach(button => button.disabled = true)
+            results.innerText = "Player Wins";
+        } else if (parseInt(computerScore.innerText) >= 5) {
+            buttons.forEach(button => button.disabled = true)
+            results.innerText = "Computer Wins";
+        } else {
+            if (results.innerText.includes('Win')) { playerScore.innerText++ }
+            if (results.innerText.includes('Lose')) { computerScore.innerText++ }
+        }
     })
 })
 
@@ -56,32 +64,52 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//plays 5 rounds, keeps score, and reports the winner or loser at the end.
-// function game() {
-//     let playerScore = 0;
-//     let computerScore = 0;
-//     for (let i = 0; i < 5; i++) {
-//         let message = playRound();
-//         console.log(message)
-//         if (message.includes('Win')) {
-//             playerScore++;
-//         } else if (message.includes('Lose')) {
-//             computerScore++;
-//         }
-//     }
-//     console.log(`Score is ${playerScore} to ${computerScore}`)
-//     return playerScore > computerScore ? 'Player wins!' : playerScore < computerScore ? 'Computer wins!' : 'TIE!'
-// }
 
 
-
-
-/* 
+/*
 Problems:
-1. Score value should be capped at 5.
-2. It needs to display the winner once someone has reach 5.
+1. Display winner when a player reaches score cap of 5
 
-3. The naming conventions confuse me
+What we know:
+innerText is a string value
+"0" + 1 evaluates to "01"
+comparison operators > don't work on strings for the cap 5
 
-4. Reduce playerScore.innerText to playerScore
+I need to parseInt(innerText) during a condition
+ I need it to be a number to use the comparison operators.
+ changing innerText to an int will render on the page
+
+I need to use button.disabled outside of the eventListener.
+ referencing button outside of the eventListener references
+ all buttons. Whereas inside, references that button
+
+
+The value needs to checked before it changes.
+
+I don't think I need a loop unless there was a way to wait
+for an eventListener.
+
+
+
+
+
+
+
+
+
+
+
+2. I'd rather playerScore.innerText be called playerScore
+3. I would like to put this into a while loop using a
+boolean value isGameOver
+4. It needs to disable buttons once it arrives at 5
 */
+
+/* Plan:
+
+
+*/
+
+
+//learned:
+//always imagine an inner if statement for &&
